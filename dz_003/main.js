@@ -8,15 +8,15 @@ window.onload = function () {
 	    group;
 
 	do {
-	studentName = prompt('Введите Имя студента:');
+	    studentName = prompt('Введите Имя студента:');
 	    if(studentName === null) {
 	    	break;
 	    }
-	studentDataGen = prompt('Введите пол студента:');
+	    studentDataGen = prompt('Введите пол студента:');
 	    if(studentDataGen === null) {
 	    	break;
 	    }
-	studentDataSkype = prompt('Введите skype студента:');
+	    studentDataSkype = prompt('Введите skype студента:');
 		if(studentDataGen === null) {
 	    	break;
 	    }
