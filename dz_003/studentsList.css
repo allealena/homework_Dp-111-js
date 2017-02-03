@@ -1,0 +1,13 @@
+table {
+	background-color: #e7fde4;
+	border-collapse: collapse;
+	font-family: 'Andika', sans-serif;
+}
+td, th {
+	border: 1px solid #4f674c;
+	 padding: 5px;
+}
+th {
+	background-color: #7db876;
+	color: #4f674c;
+}
