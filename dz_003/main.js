@@ -1,31 +1,19 @@
 window.onload = function () {
 	var content = document.getElementById('content'),
-	    studentsCatalog = [],
-	    studentDataSkype,
-	    studentDataGen,
-	    studentName,
-	    student,
-	    group;
+        studentsData =	'Владимир,Тимофеев,муж.,vovanium\n\
+						Алексей,Григорьев,муж.,izaya256\n\
+						Ирина,Рубан,жен.,princess_rina88\n\
+						Светлана,Овчаренко,жен.,ami-caty\n\
+						Елена,Рындина,жен.,dn100980rev\n\
+						Полина,Жиляева,жен.,polina_volna',
+        studentsListHeader = ["Name","Surname","Gender", "Skype", "more"],
+	    group,
+	    tableStudents;
 
-	do {
-	    studentName = prompt('Введите Имя студента:');
-	    if(studentName === null) {
-	    	break;
-	    }
-	    studentDataGen = prompt('Введите пол студента:');
-	    if(studentDataGen === null) {
-	    	break;
-	    }
-	    studentDataSkype = prompt('Введите skype студента:');
-		if(studentDataGen === null) {
-	    	break;
-	    }
+    group = new StudentsList(studentsData);
+    showStudentsList(content, studentsListHeader, group);	
 
-	student = new Student(studentName, studentDataGen, studentDataSkype);
-	studentsCatalog.push(student);
-	}
-	while (!null);
-    
-	group = new StudentsList(studentsCatalog);
-	group.showStudentsList(content);
+    tableStudents = document.getElementById("tableStudents");
+    tableStudents.addEventListener('click', showInfo, false);
 }
+
