@@ -13,20 +13,9 @@ td, th {
 th {
 	background-color: #7db876;
 }
-div.student {
+div#card {
 	position: absolute;
-	top: 50px;
+	top: 8px;
 	left: 450px;
-	display: none;
-	background-color: #fbf3ba;
-	width: 340px;
-	padding-left: 5px;
 }
-div.student span {
-	font-weight: bold;
-}
-div.student p {
-	margin-top: 0;
-	margin-bottom: 0;
-	font-size: 1.2em;
-}
+

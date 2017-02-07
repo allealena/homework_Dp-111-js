@@ -6,7 +6,8 @@ function StudentsList (students) {
 	    student,
 	    name,
 	    gender,
-	    skype;
+	    skype,
+	    age;
 
 	this.students = students;
 
@@ -21,7 +22,8 @@ function StudentsList (students) {
 		surname = item[1];
 		gender = item[2];
 		skype = item[3];
-        student = new Student(name, surname, gender, skype);
+		age = item[4];
+        student = new Student(name, surname, gender, skype, age);
         list.push(student);
 	});
 
