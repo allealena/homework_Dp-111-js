@@ -2,6 +2,7 @@
 window.addEventListener('load', startApp, false);
 function startApp () {
 	var content = document.getElementById('content'),
+        cardMore = document.getElementById('card'),
         studentsData =	'Владимир,Тимофеев,муж.,vovanium,21\n\
 						Алексей,Григорьев,муж.,izaya256,21\n\
 						Ирина,Рубан,жен.,princess_rina88,21\n\
@@ -10,11 +11,9 @@ function startApp () {
 						Полина,Жиляева,жен.,polina_volna,21',
         studentsListHeader = ['fullName','gender', 'skype'],
         studentsFullProp = ['name','surname', 'age', 'skype','gender'],
-	    card,
 	    group,
 	    tableStudents,
 	    dataStudent,
-	    cardMore,
 	    target;
 
     group = new StudentsList(studentsData);
@@ -25,16 +24,12 @@ function startApp () {
         	     	
         if (target.tagName === 'BUTTON') {
       	    dataStudent = target.getAttribute('data-student');
-        } 
-        cardMore = document.getElementById('card');
-        getFullForm(group, studentsFullProp, dataStudent, cardMore);
-
-        if (target.tagName !== 'BUTTON'){
-        	card = document.getElementById('card');
-        	card.innerHTML = '';
+            getFullForm(group, studentsFullProp, dataStudent, cardMore);
+        } else {
+        	cardMore.innerHTML = '';
         }
     }
- 
+     
     tableStudents = document.getElementById("content");
     tableStudents.addEventListener('click', showInfo, false);
 }
