@@ -1,7 +1,7 @@
 'use strict';
 window.addEventListener('load', startApp, false);
 function startApp () {
-	var content = document.getElementById('content'),
+    var content = document.getElementById('content'),
         cardMore = document.getElementById('card'),
         studentsData =	'Владимир,Тимофеев,муж.,vovanium,21\n\
 						Алексей,Григорьев,муж.,izaya256,21\n\
