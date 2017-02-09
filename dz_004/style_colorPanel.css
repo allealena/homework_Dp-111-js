@@ -1,0 +1,35 @@
+.mainColor {
+	background-color: gray;
+	width: 100px;
+	height: 150px;
+	margin-left: 10px;
+}
+.button_red {
+	background-color: red;
+}
+.button_blue {
+	background-color: blue;
+}
+.button_green {
+	background-color: green;
+}
+
+div#container {
+	width: 400px;
+	background-color: yellow;
+}
+
+#container div#colorPicker, div.mainColor, div.counters {
+	float: left;
+}
+
+.clearfix:after {
+	clear: both;
+	content: " ";
+	display: block;
+}
+span.counter {
+	font-size: 40px;
+	display: block;
+	margin-left: 30px;
+}
