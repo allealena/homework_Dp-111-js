@@ -9,9 +9,7 @@ function StudentsList (students) {
 	    skype,
 	    age;
 
-	this.students = students;
-
-	studentsCollection = this.students.split('\n');
+	studentsCollection = students.split('\n');
 	studentsCollection.forEach(function(item) {
         studentsData = item.split(',');
         studentsInfo.push(studentsData);
