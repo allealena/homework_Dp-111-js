@@ -1,6 +1,4 @@
-function ElemCellPicker (widthEl, heightEl) {
-	this.widthEl = widthEl;
-	this.heightEl = heightEl;
+function ElemCellPicker () {
 	this.color = '';
 	this.currentCount = 0;
 	this.countClick = function () {

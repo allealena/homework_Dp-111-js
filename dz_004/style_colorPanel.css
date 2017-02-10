@@ -2,7 +2,10 @@
 	background-color: gray;
 	width: 100px;
 	height: 150px;
-	margin-left: 10px;
+}
+.button {
+	width: 200px;
+	height: 50px; 
 }
 .button_red {
 	background-color: red;
@@ -13,23 +16,25 @@
 .button_green {
 	background-color: green;
 }
+.button_yellow {
+	background-color: yellow;
+}
+.button_133982 {
+	background-color: #133982;
+}
 
 div#container {
 	width: 400px;
-	background-color: yellow;
+	font-size: 0;
+
 }
 
 #container div#colorPicker, div.mainColor, div.counters {
-	float: left;
+	display: inline-block;
 }
 
-.clearfix:after {
-	clear: both;
-	content: " ";
-	display: block;
-}
 span.counter {
-	font-size: 40px;
+	font-size: 50px;
 	display: block;
 	margin-left: 30px;
 }

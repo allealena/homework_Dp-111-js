@@ -10,12 +10,12 @@ function StudentsList (students) {
 	    age;
 
 	studentsCollection = students.split('\n');
-	studentsCollection.forEach(function(item) {
+	studentsCollection.forEach(function (item) {
         studentsData = item.split(',');
         studentsInfo.push(studentsData);
 	});
    
-	studentsInfo.forEach(function(item) {
+	studentsInfo.forEach(function (item) {
 		name = item[0];
 		surname = item[1];
 		gender = item[2];

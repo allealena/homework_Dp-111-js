@@ -1,29 +1,61 @@
 function showColorPanel (colorPanel, container) {
-	var panel = '',
+	var countContainer = document.querySelector('.counters'),
+	    mainColor = document.querySelector('div.mainColor'),
+	    palette = colorPanel['colorPalette'],
+	    panel = '',
 	    colorsBtn,
-	    palette,
-	    paletteEl;
+	    currentColor,
+	    pickClassColor;
 	
-	palette = colorPanel['colorPalette'];
-	palette.forEach(function(item) {
-		panel += '<div' +' data-color="' + item.color + '" class="button button_' + item.color + '"></div>';
+	function createPalett () {
+		palette.forEach(function(item) {
+			panel += '<div' +' data-color="' + 
+			    item.color + '" class="button button_' + 
+			    item.color + '"></div>';
+		})
 
-	})
-	container.innerHTML = panel;
-	colorsBtn = document.getElementsByClassName('button');
-    paletteEl = palette[0];
-	
-	[].forEach.call(colorsBtn, (function(item) {
-		item.style.width = paletteEl.widthEl;
-		item.style.height = paletteEl.heightEl;
-	}))
+		container.innerHTML = panel;
+	}
+
+	createPalett();
+
+	function clickBtn () {
+        colorsBtn = document.querySelectorAll('div.button');
+        
+        [].forEach.call(colorsBtn, function(item) {
+            item.addEventListener('click', pickColor, false);
+        })
+    }
+
+    clickBtn();  
+
+    function pickColor (event) {
+        currentColor = this.dataset.color;
+
+        palette.forEach(function(item) {
+            if (currentColor == item.color) {
+                item.countClick();
+                colorPanel.showCount();
+            }
+        })
+
+        if(pickClassColor) {
+            mainColor.classList.remove(pickClassColor);
+        }
+        target = event.target;
+        pickClassColor = target.classList[1];
+        mainColor.classList.add(pickClassColor);
+    }
+    showCounters(palette, countContainer); 
 }  
 
 function showCounters (colorCollection, container) {
 	var counter = '';
 
 	colorCollection.forEach(function(item) {
-        counter += '<span class="counter counter_' + item + '">' +'0'+ '</span>';
+        counter += '<span class="counter counter_' + item.color + '">' +'0'+ '</span>';
 		container.innerHTML = counter;
 	})
 }
+
+
