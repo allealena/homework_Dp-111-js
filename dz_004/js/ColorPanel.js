@@ -1,14 +1,14 @@
 function ColorPanel (colorCollection) {
-	var colorPalette = [],
+	var palette = [],
 	    cellPicker,
 	    color;
 
 	colorCollection.forEach(function(item) {
 	    cellPicker = new ElemCellPicker();	
 		cellPicker.color = item; 
-		colorPalette.push(cellPicker);
+		palette.push(cellPicker);
 	})
-	this.colorPalette = colorPalette;
+	this.colorPalette = palette;
 
 	this.showCount = function () {
 		var count,

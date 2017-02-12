@@ -1,7 +1,7 @@
 'use strict';
 window.addEventListener('load', startApp, false);
 function startApp () {
-    var colorPicker = document.getElementById('colorPicker'),
+    var colorPicker = document.querySelector('.colorPicker'),
         colors = ['red', 'blue', 'green'],
         palette;
 

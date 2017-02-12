@@ -2,12 +2,14 @@ function StudentsList (students) {
 	var studentsCollection = [],	
 	    studentsInfo = [],
 	    studentsData = [],
-	    list = [],
+	    listStudent = [],
 	    student,
 	    name,
 	    gender,
 	    skype,
-	    age;
+	    birthYear,
+        birthMonth,
+        birthDate;
 
 	studentsCollection = students.split('\n');
 	studentsCollection.forEach(function (item) {
@@ -20,12 +22,20 @@ function StudentsList (students) {
 		surname = item[1];
 		gender = item[2];
 		skype = item[3];
-		age = item[4];
-        student = new Student(name, surname, gender, skype, age);
-        list.push(student);
+		birthYear = item[4];
+		birthMonth = item[5];
+		birthDate = item[6];
+        student = new Student(name, surname, gender, skype, birthYear, birthMonth, birthDate);
+        listStudent.push(student);
 	});
 
-	this.list = list;
+	this.list = listStudent;
+
+	this.toJSON = function () {
+        var toJSON = JSON.stringify(this.list);
+        return toJSON;
+    }  
+ 	
 	return this;
 }
 
