@@ -4,7 +4,6 @@ function showColorPanel (colorPanel, container) {
 	    palette = colorPanel['colorPalette'],
 	    panel = '',
 	    colorsBtn,
-	    currentColor,
         currentClass,
         currentCl,
 	    pickClassColor;

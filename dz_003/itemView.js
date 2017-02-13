@@ -1,10 +1,9 @@
 function ItemView (studentProperties, student) {
-	var row = '';
+    this.row = '';
     studentProperties.forEach(function(item) {
         row += tmplItem(student[item]);
     });
 
-    this.row = row;
     return this;
 }
 

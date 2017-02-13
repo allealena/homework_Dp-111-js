@@ -1,28 +1,27 @@
 function showStudentsList (contentId, headerCaption, studentList, studentsFullProp) {		
-	var	cardMore = document.getElementById('card'),
-        list = studentList["list"],
-        dataStudent,
-		studentItem,
-        target,
-        buttons;
+    var	cardMore = document.getElementById('card'),
+        list = studentList['list'],
+        buttons,
+        tableContent,
+        fullForm,
+        studentName;
 
     createTable();
-    addEventBtn('button');	
+    addEventBtn('button');
+    cardMore.addEventListener('click', hideInfo, false);	
 	
     function createTable () {
-        var tableContent;        
         tableContent = tmplTable(headerCaption, list);
-	    contentId.innerHTML = tableContent;
+        contentId.innerHTML = tableContent;
     }
 
     function getFullForm (studentProps, student, cardId) {
-        var fullForm;
         fullForm = tmplFullForm(studentProps, student);
         cardId.innerHTML = fullForm;
 }
 
     function showInfo () {
-        var studentName = this.name;
+        studentName = this.name;
         list.forEach(function (item) {
             if (item.name === studentName) {
                 getFullForm(studentsFullProp, item, cardMore);
@@ -41,8 +40,6 @@ function showStudentsList (contentId, headerCaption, studentList, studentsFullPr
     function hideInfo () {
         cardMore.innerHTML = '';
     }
-
-    cardMore.addEventListener('click', hideInfo, false);
 }   
 
 
