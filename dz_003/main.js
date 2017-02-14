@@ -8,13 +8,13 @@ function startApp () {
 Светлана,Овчаренко,жен.,ami-caty,1999, 7, 10\n\
 Елена,Рындина,жен.,dn100980rev,1999, 8, 10\n\
 Полина,Жиляева,жен.,polina_volna,1999, 4, 22',
-        studentsListHeader = ['fullName','gender', 'skype'],
-        studentsFullProp = ['name','surname', 'age', 'skype','gender'],
-	    group;
+	    group,
+        tableContent;
 
     group = new StudentsList(studentsData);
+    tableContent = new TableView(group);
 
-    showStudentsList(content, studentsListHeader, group, studentsFullProp);
+    content.appendChild(tableContent.showInfo());
 }
 
 

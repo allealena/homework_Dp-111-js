@@ -9,7 +9,8 @@ function StudentsList (students) {
 	    skype,
 	    birthYear,
         birthMonth,
-        birthDate;
+        birthDate,
+        studentItem;
 
 	studentsCollection = students.split('\n');
 	studentsCollection.forEach(function (item) {
@@ -29,13 +30,6 @@ function StudentsList (students) {
         listStudent.push(student);
 	});
 
-	this.list = listStudent;
-
-	this.toJSON = function () {
-        var toJSON = JSON.stringify(this.list);
-        return toJSON;
-    }  
- 	
+	this.list = listStudent; 
 	return this;
 }
-

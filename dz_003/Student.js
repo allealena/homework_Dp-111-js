@@ -1,17 +1,19 @@
 function Student (name, surname, gender, skype, birthYear, birthMonth, birthDate) {
-    this.name = name;
-    this.surname = surname;
-    this.gender = gender;
-    this.skype = skype;
-    this.birthday = new Date(birthYear, birthMonth-1, birthDate);
-    this.fullName = this.name + ' ' + this.surname;
-
-    var personeAge;
+    var birthday = new Date(birthYear, birthMonth-1, birthDate),
+        studentJSON = {},
+        nameSt = name,
+        surnameSt = surname,
+        genderSt = gender,
+        skypeSt = skype,
+        personeAge,
+        today,
+        monthBirth;
+    
     getAge();
 
     function getAge () {
-    	var today = new Date(),
-    	    monthBirth = today.getMonth() - (birthMonth-1);
+        today = new Date();
+        monthBirth = today.getMonth() - (birthMonth-1);
     	
         personeAge = today.getFullYear() - birthYear;
     	if (monthBirth < 0 || (monthBirth === 0 && today.getDate() < birthDate)) {
@@ -19,7 +21,14 @@ function Student (name, surname, gender, skype, birthYear, birthMonth, birthDate
     	}
     }
 
-    this.age = personeAge;
+    this.toJSON = function () {        
+        studentJSON.name = nameSt;
+        studentJSON.surname = surnameSt;
+        studentJSON.gender = genderSt;
+        studentJSON.skype = skypeSt;
+        studentJSON.age = personeAge;
+        studentJSON.fullName = studentJSON.name + ' ' + studentJSON.surname;
 
-    return this;
+        return studentJSON;
+    }
 }
