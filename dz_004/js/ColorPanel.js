@@ -10,7 +10,7 @@ function ColorPanel (colorCollection) {
 	})
 	this.colorPalette = palette;
 
-	this.showCount = function () {
+	/*this.showCount = function () {
 		var count,
 		    classColor = '',
 		    countContainer;
@@ -22,5 +22,5 @@ function ColorPanel (colorCollection) {
 			countContainer.innerHTML = count;
 			classColor = '';
 		})
-	}
+	}*/
 } 

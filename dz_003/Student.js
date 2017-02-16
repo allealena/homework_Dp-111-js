@@ -1,10 +1,13 @@
-function Student (name, surname, gender, skype, birthYear, birthMonth, birthDate) {
-    var birthday = new Date(birthYear, birthMonth-1, birthDate),
+function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthSt, birthDateSt) {
+    var birthday = new Date(birthYearSt, birthMonthSt-1, birthDateSt),
+        student = {},
         studentJSON = {},
-        nameSt = name,
-        surnameSt = surname,
-        genderSt = gender,
-        skypeSt = skype,
+        propertyStudent = [
+        {name: nameSt},
+        {surname: surnameSt},
+        {gender: genderSt},
+        {skype: skypeSt}
+        ],
         personeAge,
         today,
         monthBirth;
@@ -13,22 +16,35 @@ function Student (name, surname, gender, skype, birthYear, birthMonth, birthDate
 
     function getAge () {
         today = new Date();
-        monthBirth = today.getMonth() - (birthMonth-1);
+        monthBirth = today.getMonth() - (birthMonthSt-1);
     	
-        personeAge = today.getFullYear() - birthYear;
-    	if (monthBirth < 0 || (monthBirth === 0 && today.getDate() < birthDate)) {
+        personeAge = today.getFullYear() - birthYearSt;
+    	if (monthBirth < 0 || (monthBirth === 0 && today.getDate() < birthDateSt)) {
             personeAge--;
     	}
     }
 
-    this.toJSON = function () {        
-        studentJSON.name = nameSt;
-        studentJSON.surname = surnameSt;
-        studentJSON.gender = genderSt;
-        studentJSON.skype = skypeSt;
-        studentJSON.age = personeAge;
-        studentJSON.fullName = studentJSON.name + ' ' + studentJSON.surname;
+    this.toJSON = function () {           
+        student.name = propertyStudent[0].name;
+        student.surname = propertyStudent[1].surname;
+        student.gender = propertyStudent[2].gender;
+        student.skype = propertyStudent[3].skype;
+        student.age = personeAge;
+        student.fullName = student.name + ' ' + student.surname;
 
+        for (var key in student) {
+            studentJSON[key] = student[key];
+        }
         return studentJSON;
+    }
+
+    this.setProperty = function (property, value) {
+        for (var key in propertyStudent) {
+            var prop = propertyStudent[key];
+            console.log(prop[0]);
+        }
+        property = value;
+        console.log(property);
+        console.log(value);
     }
 }

@@ -12,7 +12,8 @@ function startApp () {
         tableContent;
 
     group = new StudentsList(studentsData);
-    tableContent = new TableView(group);
+/*    console.log(group.listProps);
+*/    tableContent = new TableView(group);
 
     content.appendChild(tableContent.showInfo());
 }

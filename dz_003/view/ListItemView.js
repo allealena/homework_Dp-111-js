@@ -1,24 +1,36 @@
-function ListItemView (student) {
+function ListItemView (student, properties) {
 	var listItem,
 	    row,
-	    button,
+	    buttonMore,
 	    more,
-	    tdButton,
-	    fullForm;
+	    edit,
+	    tdButtonMore,
+	    tdButtonEdit,
+	    buttonEdit,
+	    fullForm,
+	    editForm,
+	    edit;
 
 	this.showItem = function () {
 	    listItem = renderTpl(tmplRowTable(), student);
 	    
 	    row = document.createElement('tr');
-	    button = document.createElement('button');
+	    buttonMore = document.createElement('button');
+	    buttonEdit = document.createElement('button');
 	    more = document.createTextNode('more');
-	    button.appendChild(more);
-	    tdButton = document.createElement('td');
-	    tdButton.appendChild(button);
+	    edit = document.createTextNode('edit');
+	    buttonMore.appendChild(more);
+	    tdButtonMore = document.createElement('td');
+	    tdButtonEdit = document.createElement('td');
+	    tdButtonMore.appendChild(buttonMore);
 	    row.innerHTML = listItem;
-	    row.appendChild(tdButton);
+	    row.appendChild(tdButtonMore);
+	    buttonEdit.appendChild(edit);
+	    tdButtonEdit.appendChild(buttonEdit);
+	    row.appendChild(tdButtonEdit);
 
-	    button.addEventListener('click', showInfoStudent, false);
+	    buttonMore.addEventListener('click', showInfoStudent, false);
+	    buttonEdit.addEventListener('click', showEditForm, false);
 	    return row;
 	}
 
@@ -26,4 +38,14 @@ function ListItemView (student) {
         fullForm = new FullInfoView(student);
         fullForm.showStudent();
 	}
-}
+
+	function showEditForm () {
+		editForm = new EditFormView(student, properties);
+		editForm.showEditStudent();
+		
+/*		console.log(edit);
+*/		
+	}
+/*	this.editData = edit;
+*//*	console.log(this.editData);
+*/}
