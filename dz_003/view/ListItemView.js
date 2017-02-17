@@ -1,4 +1,4 @@
-function ListItemView (student, properties) {
+function ListItemView (student) {
 	var listItem,
 	    row,
 	    buttonMore,
@@ -8,8 +8,7 @@ function ListItemView (student, properties) {
 	    tdButtonEdit,
 	    buttonEdit,
 	    fullForm,
-	    editForm,
-	    edit;
+	    editForm;
 
 	this.showItem = function () {
 	    listItem = renderTpl(tmplRowTable(), student);
@@ -40,12 +39,9 @@ function ListItemView (student, properties) {
 	}
 
 	function showEditForm () {
-		editForm = new EditFormView(student, properties);
-		editForm.showEditStudent();
+		editForm = new EditFormView(student);
+		editForm.showEditStudent();	
 		
-/*		console.log(edit);
-*/		
+		console.log(editForm.changeData);
 	}
-/*	this.editData = edit;
-*//*	console.log(this.editData);
-*/}
+}

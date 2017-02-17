@@ -33,33 +33,9 @@ function StudentsList (students) {
         student = new Student(name, surname, gender, skype, birthYear, birthMonth, birthDate);
         
         listStudent.push(student);
-
-        studentJSON = student.toJSON();
-
-     /*   studentProps = [];
-
-        for (key in studentJSON) {
-        	propSt = studentJSON[key];
-        	studentProps.push(propSt);
-        }
-        
-        props.push(studentProps);*/
-
-           studentProps = [];
-        studentJSON = student.toJSON();
-
-        for (key in studentJSON) {
-        	propSt = {};
-        	propSt[key] = studentJSON[key];
-        	studentProps.push(propSt);
-        }
-        
-        props.push(studentProps);
 	});
     
 	this.list = listStudent; 
-	this.listProps = props;
-	console.log(props);
 
 	return this;
 }

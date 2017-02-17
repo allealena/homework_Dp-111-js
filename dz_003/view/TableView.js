@@ -1,9 +1,7 @@
 function TableView (studentList) {
 	var studentCollection = studentList['list'],
-	    properties = studentList['listProps'],
 	    table = document.createElement('table'),
 	    header = tmplTableHeader(),
-	    studentProperties,
 	    studentItem,
 	    item,
 	    row;
@@ -13,10 +11,8 @@ function TableView (studentList) {
 	this.showInfo = function () {
 	    for (var key in studentCollection) {
             studentItem = studentCollection[key].toJSON();
-            studentProperties = properties[key];
-            item = new ListItemView(studentItem, studentProperties);
+            item = new ListItemView(studentItem);
             row = item.showItem(); 
-            console.log(studentProperties);
             table.appendChild(row);
         }
     

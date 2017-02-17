@@ -38,13 +38,7 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
         return studentJSON;
     }
 
-    this.setProperty = function (property, value) {
-        for (var key in propertyStudent) {
-            var prop = propertyStudent[key];
-            console.log(prop[0]);
-        }
-        property = value;
-        console.log(property);
-        console.log(value);
+    this.setProperty = function () {
+        console.log(1);    
     }
 }
