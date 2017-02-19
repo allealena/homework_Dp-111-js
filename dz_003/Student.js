@@ -2,12 +2,12 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
     var birthday = new Date(birthYearSt, birthMonthSt-1, birthDateSt),
         student = {},
         studentJSON = {},
-        propertyStudent = [
-        {name: nameSt},
-        {surname: surnameSt},
-        {gender: genderSt},
-        {skype: skypeSt}
-        ],
+        propertyStudent = {
+        name: nameSt,
+        surname: surnameSt,
+        gender: genderSt,
+        skype: skypeSt
+        },
         personeAge,
         today,
         monthBirth;
@@ -25,10 +25,10 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
     }
 
     this.toJSON = function () {           
-        student.name = propertyStudent[0].name;
-        student.surname = propertyStudent[1].surname;
-        student.gender = propertyStudent[2].gender;
-        student.skype = propertyStudent[3].skype;
+        student.name = propertyStudent.name;
+        student.surname = propertyStudent.surname;
+        student.gender = propertyStudent.gender;
+        student.skype = propertyStudent.skype;
         student.age = personeAge;
         student.fullName = student.name + ' ' + student.surname;
 
@@ -38,7 +38,11 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
         return studentJSON;
     }
 
-    this.setProperty = function () {
-        console.log(1);    
+    this.setProperty = function (changeData) {
+        for (var key in propertyStudent) {
+            if (changeData[key]) {
+                propertyStudent[key] = changeData[key];
+            }
+        }
     }
 }

@@ -11,11 +11,11 @@ function TableView (studentList) {
 	this.showInfo = function () {
 	    for (var key in studentCollection) {
             studentItem = studentCollection[key].toJSON();
-            item = new ListItemView(studentItem);
+            item = new ListItemView(studentItem, studentCollection[key]);
             row = item.showItem(); 
             table.appendChild(row);
-        }
-    
+        } 
+          
     return table;
-    }
+    }    
 }

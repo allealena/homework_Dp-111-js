@@ -3,18 +3,14 @@ function StudentsList (students) {
 	    studentsInfo = [],
 	    studentsData = [],
 	    listStudent = [],
-	    props = [],
 	    studentProps,
-	    studentJSON,
-	    propSt,
 	    student,
 	    name,
 	    gender,
 	    skype,
 	    birthYear,
         birthMonth,
-        birthDate,
-        studentItem;
+        birthDate;
 
 	studentsCollection = students.split('\n');
 	studentsCollection.forEach(function (item) {

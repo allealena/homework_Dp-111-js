@@ -1,34 +1,62 @@
-function EditFormView (student) {
+function EditFormView (studentJSON, student, tableRow) {
     var formContainer = document.getElementById('editForm'),
+        editData = {},
         formInner,
         form,
         buttonSave,
         buttonClose,
         formInputs,
         prop,
-        editData = [];
+        newInfo,
+        viewStudent,
+        updateRow,
+        parentTable,
+        updateInfoStudent,
+        property;
 
-	this.showEditStudent = function () {
+	this.showEdit = function () {
 	    formInner = tmplForm();
 	    formContainer.innerHTML = formInner;
 	    
 	    buttonSave = document.querySelector('.button_save');
+        buttonSave.addEventListener('click', saveChanges, false);
+
 	    form = document.querySelector('.form');
 	    formInputs = form.querySelectorAll('input');
 	    
 	    [].forEach.call(formInputs, function (item) {
 	    	prop = item.name;
-	    	item.value = student[prop];
+	    	item.value = studentJSON[prop];
 	    })
-        buttonSave.addEventListener('click', saveChanges, false);
+	}
+
+	this.closeEdit = function () {
+		buttonClose = document.querySelector('.button_close');
+		buttonClose.addEventListener('click', hideEdit, false);
+	}
+
+	function hideEdit () {
+		formContainer.innerHTML = '';
 	}
     	
     function saveChanges () {
-        [].forEach.call(formInputs, function (item) {
-            editData.push(item.value);
-        })    
-        this.changeData = editData; 
-   }
+        [].forEach.call(formInputs, function (item) { 
+        property = item.name;           
+        editData[property] = item.value;
+        })  
+        
+        student.setProperty(editData);
+        
+        newInfo = student.toJSON();
+        viewStudent = new ListItemView(newInfo, student);
+        updateRow = viewStudent.showItem();
+        parentTable = tableRow.parentNode;
+        parentTable.replaceChild(updateRow, tableRow)
+
+        updateInfoStudent = new FullInfoView(studentJSON);
+        updateInfoStudent.showStudent();   
+        hideEdit();
+    }
 }
 
 
