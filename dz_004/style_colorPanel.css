@@ -26,10 +26,9 @@
 div#container {
 	width: 400px;
 	font-size: 0;
-
 }
 
-#container div.colorPicker, div.mainColor, div.counters {
+#container div.containerColors, div.mainColor, div.counters {
 	display: inline-block;
 }
 
