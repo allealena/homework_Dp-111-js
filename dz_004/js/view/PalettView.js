@@ -9,7 +9,7 @@ function PalettView (colorPanel) {
         colorCell = new ButtonView(item.color, item);
         colorCell.showButton();
 
-        colorCounter = new CounterView(item.color);
+        colorCounter = new CounterView(item.color, item);
         colorCounter.showCount();
     }
 }

@@ -10,7 +10,10 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
         },
         personeAge,
         today,
-        monthBirth;
+        monthBirth,
+        listeners = {
+            update: []
+        };
     
     getAge();
 
@@ -43,6 +46,22 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
             if (changeData[key]) {
                 propertyStudent[key] = changeData[key];
             }
+        }
+        this.triggerEvent('update');
+    }
+
+    this.addListener = function (evt, callback) {
+        if (!listeners.hasOwnProperty(evt)) {
+            listeners[evt] = [];
+        }
+        listeners[evt].push(callback);
+    }
+
+    this.triggerEvent = function (evt) {
+        if (listeners.hasOwnProperty(evt)) {
+            listeners[evt].forEach(function (callback) {
+                callback();
+            })
         }
     }
 }

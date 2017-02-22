@@ -1,4 +1,4 @@
-function ListItemView (studentJSON, student) {
+function ListItemView (student) {
 	var listItem,
 	    row,
 	    buttonMore,
@@ -8,12 +8,17 @@ function ListItemView (studentJSON, student) {
 	    tdButtonEdit,
 	    buttonEdit,
 	    fullForm,
-	    editForm;
+	    editForm,
+	    studentJSON,
+	    container,
+	    newRow;
 
-	this.showItem = function () {
-	    listItem = renderTpl(tmplRowTable(), studentJSON);
-	    
 	    row = document.createElement('tr');
+
+	function createRow () {
+	    studentJSON = student.toJSON();
+	    listItem = renderTpl(tmplRowTable(), studentJSON);
+
 	    row.innerHTML = listItem;
 
 	    buttonMore = document.createElement('button');
@@ -36,13 +41,31 @@ function ListItemView (studentJSON, student) {
 	    return row;
 	}
 
+	this.showItem = function () {
+        createRow();
+
+	    student.addListener('update', updateInfo);
+	 
+        return row;
+	}
+
+	function updateInfo () {
+		container = row.parentNode;
+
+        buttonMore.removeEventListener('click', showInfoStudent, false);
+	    buttonEdit.removeEventListener('click', showEditForm, false);
+        
+        newRow = createRow();
+        container.replaceChild(newRow, row);
+	}
+
 	function showInfoStudent () {
         fullForm = new FullInfoView(studentJSON);
         fullForm.showStudent();
 	}
 
 	function showEditForm () {
-		editForm = new EditFormView(studentJSON, student, row);
+		editForm = new EditFormView(student);
 		editForm.showEdit();	
 		editForm.closeEdit();
 	}

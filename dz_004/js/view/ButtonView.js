@@ -21,10 +21,4 @@ function ButtonView (color, colorItem) {
         colorClass = this.firstChild.classList[1];
         mainColor = new MainColorView(colorClass);
     }
-
-     function countButtonClick () {
-        curCount = document.querySelector('span.counter_' + color);
-        count = colorItem.countClick();
-        curCount.innerHTML = count;
-    }
 }

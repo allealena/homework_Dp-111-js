@@ -1,4 +1,5 @@
-function EditFormView (studentJSON, student, tableRow) {
+'use strict';
+function EditFormView (student) {
     var formContainer = document.getElementById('editForm'),
         editData = {},
         formInner,
@@ -12,7 +13,10 @@ function EditFormView (studentJSON, student, tableRow) {
         updateRow,
         parentTable,
         updateInfoStudent,
-        property;
+        property,
+        studentJSON;
+
+        studentJSON = student.toJSON();
 
 	this.showEdit = function () {
 	    formInner = tmplForm();
@@ -32,10 +36,16 @@ function EditFormView (studentJSON, student, tableRow) {
 
 	this.closeEdit = function () {
 		buttonClose = document.querySelector('.button_close');
-		buttonClose.addEventListener('click', hideEdit, false);
+		
+        buttonClose.addEventListener('click', hideEdit, false);
 	}
 
 	function hideEdit () {
+        if (buttonClose || buttonSave) {
+            buttonClose.removeEventListener('click', hideEdit);
+            buttonSave.removeEventListener('click', saveChanges);
+        }
+
 		formContainer.innerHTML = '';
 	}
     	
@@ -46,15 +56,7 @@ function EditFormView (studentJSON, student, tableRow) {
         })  
         
         student.setProperty(editData);
-        
-        newInfo = student.toJSON();
-        viewStudent = new ListItemView(newInfo, student);
-        updateRow = viewStudent.showItem();
-        parentTable = tableRow.parentNode;
-        parentTable.replaceChild(updateRow, tableRow)
-
-        updateInfoStudent = new FullInfoView(studentJSON);
-        updateInfoStudent.showStudent();   
+  
         hideEdit();
     }
 }

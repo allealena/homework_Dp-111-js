@@ -18,6 +18,10 @@ function FullInfoView (student) {
 	}
 
     function hideInfoStudent () {
+    	if (buttonClose) {
+    	    buttonClose.removeEventListener('click', hideInfoStudent);
+    	}
+
     	container.innerHTML = '';
     }
 }

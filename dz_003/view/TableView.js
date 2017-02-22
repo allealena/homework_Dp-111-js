@@ -1,5 +1,6 @@
 function TableView (studentList) {
-	var studentCollection = studentList['list'],
+	var content = document.getElementById('content'),
+	    studentCollection = studentList['list'],
 	    table = document.createElement('table'),
 	    header = tmplTableHeader(),
 	    studentItem,
@@ -10,12 +11,13 @@ function TableView (studentList) {
 
 	this.showInfo = function () {
 	    for (var key in studentCollection) {
-            studentItem = studentCollection[key].toJSON();
-            item = new ListItemView(studentItem, studentCollection[key]);
+            studentItem = studentCollection[key];
+            item = new ListItemView(studentItem);
             row = item.showItem(); 
             table.appendChild(row);
         } 
-          
-    return table;
-    }    
+    content.appendChild(table);          
+    }  
+     
+    return this; 
 }
