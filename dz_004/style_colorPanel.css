@@ -7,19 +7,19 @@
 	width: 200px;
 	height: 50px; 
 }
-.button_red {
+.button_red, .mainColor_red {
 	background-color: red;
 }
-.button_blue {
+.button_blue, .mainColor_blue {
 	background-color: blue;
 }
-.button_green {
+.button_green, .mainColor_green {
 	background-color: green;
 }
-.button_yellow {
+.button_yellow .mainColor_yellow {
 	background-color: yellow;
 }
-.button_133982 {
+.button_133982, .mainColor_133982 {
 	background-color: #133982;
 }
 

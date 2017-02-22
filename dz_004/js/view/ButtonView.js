@@ -1,10 +1,7 @@
 function ButtonView (color, colorItem) {
     var containerColors = document.querySelector('.containerColors'),
-        colorClass = '',
-        curCount,
         colorCell,
         containerButton,
-        count,
         mainColor;
 	    
     this.showButton = function () {
@@ -13,12 +10,11 @@ function ButtonView (color, colorItem) {
         containerButton.innerHTML = colorCell;
         containerColors.appendChild(containerButton);
 
-        containerButton.addEventListener('click', pickColor, false);        
-        containerButton.addEventListener('click', countButtonClick, false);
+        containerButton.addEventListener('click', pickColor, false);   
     } 
 
     function pickColor() {
-        colorClass = this.firstChild.classList[1];
-        mainColor = new MainColorView(colorClass);
+        colorItem.countClick();
+        mainColor = new MainColorView(color);
     }
 }

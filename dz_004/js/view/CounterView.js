@@ -11,10 +11,12 @@ function CounterView (color, colorItem) {
     	containerCounter.innerHTML = counter;
         containerCount.appendChild(containerCounter);
     }
+    
+    colorItem.addListener('clickcolor', countButtonClick); 
 
     function countButtonClick () {
         curCount = document.querySelector('span.counter_' + color);
-        count = colorItem.countClick();
+        count = colorItem.currentCount;
         curCount.innerHTML = count;
     }
 }        
