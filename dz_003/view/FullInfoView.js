@@ -1,27 +1,33 @@
 'use strict';
-function FullInfoView (student) {
-	var table = renderTpl(tmplFullForm(), student),
-	    container = document.getElementById('card'),
-	    buttonClose = document.createElement('button'),
-	    close = document.createTextNode('close'),
-	    containerTable = document.createElement('div');
+function FullInfoView (container, mediator) {
+	var table,
+	    buttonClose,
+	    close,
+	    containerTable,
+	    studentJSON;
 
+	function showStudentForm (student) {
+		studentJSON = student.toJSON();
+		table = renderTpl(tmplFullForm(), studentJSON);
+        buttonClose = document.createElement('button');
+	    close = document.createTextNode('close');
+	    containerTable = document.createElement('div');
         containerTable.innerHTML = table;
-	    buttonClose.appendChild(close);
+
+        buttonClose.appendChild(close);
 	    containerTable.appendChild(buttonClose);
 
-	buttonClose.addEventListener('click', hideInfoStudent, false);
-
-	this.showStudent = function () {
+	    buttonClose.addEventListener('click', hideInfoStudent, false);
 		container.innerHTML = '';
 		container.appendChild(containerTable);
+		return container;
 	}
 
     function hideInfoStudent () {
-    	if (buttonClose) {
-    	    buttonClose.removeEventListener('click', hideInfoStudent);
-    	}
+    	buttonClose.removeEventListener('click', hideInfoStudent);
 
     	container.innerHTML = '';
     }
+
+    mediator.on('getStudentData', showStudentForm);	
 }

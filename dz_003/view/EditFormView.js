@@ -1,5 +1,5 @@
 'use strict';
-function EditFormView (student) {
+function EditFormView (container, mediator) {
     var formContainer = document.getElementById('editForm'),
         editData = {},
         formInner,
@@ -8,22 +8,22 @@ function EditFormView (student) {
         buttonClose,
         formInputs,
         prop,
-        newInfo,
-        viewStudent,
-        updateRow,
-        parentTable,
-        updateInfoStudent,
         property,
-        studentJSON;
+        studentJSON,
+        studentCurrent;
 
+
+	function showEdit (student) {
+        studentCurrent = student;
         studentJSON = student.toJSON();
-
-	this.showEdit = function () {
 	    formInner = tmplForm();
-	    formContainer.innerHTML = formInner;
+	    container.innerHTML = formInner;
 	    
 	    buttonSave = document.querySelector('.button_save');
         buttonSave.addEventListener('click', saveChanges, false);
+
+        buttonClose = document.querySelector('.button_close');       
+        buttonClose.addEventListener('click', hideEdit, false);
 
 	    form = document.querySelector('.form');
 	    formInputs = form.querySelectorAll('input');
@@ -34,19 +34,11 @@ function EditFormView (student) {
 	    })
 	}
 
-	this.closeEdit = function () {
-		buttonClose = document.querySelector('.button_close');
-		
-        buttonClose.addEventListener('click', hideEdit, false);
-	}
+	function hideEdit () {        
+        buttonClose.removeEventListener('click', hideEdit);
+        buttonSave.removeEventListener('click', saveChanges);
 
-	function hideEdit () {
-        if (buttonClose || buttonSave) {
-            buttonClose.removeEventListener('click', hideEdit);
-            buttonSave.removeEventListener('click', saveChanges);
-        }
-
-		formContainer.innerHTML = '';
+		container.innerHTML = '';
 	}
     	
     function saveChanges () {
@@ -55,10 +47,12 @@ function EditFormView (student) {
         editData[property] = item.value;
         })  
         
-        student.setProperty(editData);
+        studentCurrent.setProperty(editData);
   
         hideEdit();
     }
+    
+    mediator.on('editStudentData', showEdit);    
 }
 
 

@@ -1,4 +1,4 @@
-function ListItemView (student) {
+function ListItemView (student, mediator) {
 	var listItem,
 	    row,
 	    buttonMore,
@@ -7,8 +7,6 @@ function ListItemView (student) {
 	    tdButtonMore,
 	    tdButtonEdit,
 	    buttonEdit,
-	    fullForm,
-	    editForm,
 	    studentJSON,
 	    container,
 	    newRow;
@@ -60,13 +58,10 @@ function ListItemView (student) {
 	}
 
 	function showInfoStudent () {
-        fullForm = new FullInfoView(studentJSON);
-        fullForm.showStudent();
+		mediator.triggerEvent('getStudentData', student);
 	}
 
 	function showEditForm () {
-		editForm = new EditFormView(student);
-		editForm.showEdit();	
-		editForm.closeEdit();
+		mediator.triggerEvent('editStudentData', student);
 	}
 }

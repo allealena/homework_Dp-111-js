@@ -7,13 +7,22 @@ function startApp () {
 Светлана,Овчаренко,жен.,ami-caty,1999, 7, 10\n\
 Елена,Рындина,жен.,dn100980rev,1999, 8, 10\n\
 Полина,Жиляева,жен.,polina_volna,1999, 4, 22',
+        card = document.getElementById('card'),
+        editForm = document.getElementById('editForm'),
 	    group,
-        tableContent;
+        tableContent,
+        mediator,
+        studentFullInfo,
+        studentEdit;
 
+    mediator = new Mediator();
     group = new StudentsList(studentsData);
-    tableContent = new TableView(group);
+    tableContent = new TableView(group, mediator);
 
     tableContent.showInfo();
+
+    studentFullInfo = new FullInfoView(card, mediator);
+    studentEdit = new EditFormView(editForm, mediator);
 }
 
 
