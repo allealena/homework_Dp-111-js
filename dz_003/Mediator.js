@@ -4,14 +4,14 @@ function Mediator () {
         editStudentData: []
 	};
 
-	this.on = function (evt, callback) {
+	this.sub = function (evt, callback) {
         if (!this.listeners[evt]) {
             this.listeners[evt] = [];
         }
         this.listeners[evt].push(callback);
     }
 
-    this.triggerEvent = function (evt, data) {
+    this.pub = function (evt, data) {
         if (this.listeners[evt]) {
             this.listeners[evt].forEach(function (callback) {
                 callback(data);

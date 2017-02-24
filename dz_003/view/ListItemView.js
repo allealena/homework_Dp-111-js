@@ -58,10 +58,10 @@ function ListItemView (student, mediator) {
 	}
 
 	function showInfoStudent () {
-		mediator.triggerEvent('getStudentData', student);
+		mediator.pub('getStudentData', student);
 	}
 
 	function showEditForm () {
-		mediator.triggerEvent('editStudentData', student);
+		mediator.pub('editStudentData', student);
 	}
 }

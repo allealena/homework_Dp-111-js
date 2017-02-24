@@ -52,7 +52,7 @@ function EditFormView (container, mediator) {
         hideEdit();
     }
     
-    mediator.on('editStudentData', showEdit);    
+    mediator.sub('editStudentData', showEdit);    
 }
 
 

@@ -51,14 +51,14 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
     }
 
     this.addListener = function (evt, callback) {
-        if (!listeners.hasOwnProperty(evt)) {
+        if (!listeners[evt]) {
             listeners[evt] = [];
         }
         listeners[evt].push(callback);
     }
 
     this.triggerEvent = function (evt) {
-        if (listeners.hasOwnProperty(evt)) {
+        if (listeners[evt]) {
             listeners[evt].forEach(function (callback) {
                 callback();
             })

@@ -29,5 +29,5 @@ function FullInfoView (container, mediator) {
     	container.innerHTML = '';
     }
 
-    mediator.on('getStudentData', showStudentForm);	
+    mediator.sub('getStudentData', showStudentForm);	
 }
