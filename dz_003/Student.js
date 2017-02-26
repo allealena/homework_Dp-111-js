@@ -49,19 +49,6 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
         }
         this.triggerEvent('update');
     }
-
-    this.addListener = function (evt, callback) {
-        if (!listeners[evt]) {
-            listeners[evt] = [];
-        }
-        listeners[evt].push(callback);
-    }
-
-    this.triggerEvent = function (evt) {
-        if (listeners[evt]) {
-            listeners[evt].forEach(function (callback) {
-                callback();
-            })
-        }
-    }
 }
+
+Student.prototype = Object.create(ColorCounter.prototype);

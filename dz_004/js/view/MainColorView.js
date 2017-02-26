@@ -1,4 +1,4 @@
- function MainColorView (color) { 
+function MainColorView (color) { 
  	var mainColor = document.querySelector('.mainColor'),
  	    colorDel,
  	    colorClass='';
@@ -11,4 +11,4 @@
         }
         
         mainColor.classList.add(colorClass);  	    
-    }
+}

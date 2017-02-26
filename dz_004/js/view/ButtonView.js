@@ -5,12 +5,13 @@ function ButtonView (color, colorItem) {
         mainColor;
 	    
     this.showButton = function () {
-        colorCell = renderTpl(tplButton(), color);
+        colorCell = renderTplColor(tplButton(), color);
+
         containerButton = document.createElement('div');
         containerButton.innerHTML = colorCell;
         containerColors.appendChild(containerButton);
 
-        containerButton.addEventListener('click', pickColor, false);   
+        containerButton.addEventListener('click', pickColor, false);
     } 
 
     function pickColor() {
