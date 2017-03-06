@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="styles/studentsList.css">
 		<link href="https://fonts.googleapis.com/css?family=Andika&amp;subset=cyrillic" rel="stylesheet">
 		<link rel="stylesheet" href="styles/style_colorPanel.css">
+		<link rel="stylesheet" href="styles/styleCounties.css">
 
 		<script src="scripts/libs/Mediator.js"></script>		
 		<script src="scripts/libs/Observer.js"></script>		
@@ -38,15 +39,31 @@
 		<script src="scripts/StudentList/tpls/tmplRowTable.js"></script>
 		<script src="scripts/StudentList/tpls/renderTpl.js"></script>
 		<script src="scripts/StudentList/ControllerStudentList.js"></script>
+
+	    <script src="scripts/Countries/models/collection.js"></script>
+	    <script src="scripts/Countries/models/Country.js"></script>
+	    <script src="scripts/Countries/models/Countries.js"></script>
+
+	    <script src="scripts/Countries/tpls/tplListItem.js"></script>
+	    <script src="scripts/Countries/tpls/tplNav.js"></script>
+	    <script src="scripts/Countries/tpls/tplCaption.js"></script>
+	    <script src="scripts/Countries/tpls/renderTplCountry.js"></script>
+
+	    <script src="scripts/Countries/view/ViewNavigation.js"></script>
+	    <script src="scripts/Countries/view/ViewCountryItem.js"></script>
+	    <script src="scripts/Countries/view/ViewCountries.js"></script>
+	    <script src="scripts/Countries/ControllerCountry.js"></script>
 		
 		<script src="scripts/main.js"></script>
 	</head>
 	<body>
-		<div id="content">
-		</div>
-		<div id="card">
-		</div>
-		<div id="editForm">
+	    <div id="studentList">
+		    <div id="content">
+		    </div>
+		    <div id="card">
+		    </div>
+		    <div id="editForm">
+		    </div>
 		</div>
 		<div id="container">
 		    <div class="containerColors">
@@ -56,5 +73,9 @@
 		    <div class="counters">
 		    </div>
 		</div>
+		<div class="buttons">
+		</div>
+	    <div class="countries">  
+	    </div>
 	</body>
 </html>

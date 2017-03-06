@@ -5,7 +5,8 @@ window.addEventListener('load', startApp, false);
 
 function startApp () {
     var controlStudentList = new ControllerStudentList(),
-        controlColorBlock = new ControllerColorBlock();    
+        controlColorBlock = new ControllerColorBlock(),
+        controlCounty = new ControllerCountry();    
 }
 
 

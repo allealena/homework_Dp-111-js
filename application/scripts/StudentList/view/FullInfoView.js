@@ -1,27 +1,28 @@
 'use strict';
-function FullInfoView (container) {
+function FullInfoView () {
 	var table,
 	    buttonClose,
 	    containerTable,
 	    studentJSON;
 
-	function showStudentForm (student) {
-		container.innerHTML = '';
+	this.showStudentForm = function (student) {
+		if (containerTable) {
+    	containerTable.parentNode.innerHTML = '';			
+		}
+
 		studentJSON = student.toJSON();
 		table = renderTpl(tmplFullForm(), studentJSON);
 
 	    containerTable = document.createElement('div');
         containerTable.innerHTML = table;
-        container.appendChild(containerTable);
 
-        buttonClose = container.querySelector('button.closeFullForm');
-	    buttonClose.addEventListener('click', hideInfoStudent, false);
-		return container;
+        buttonClose = containerTable.querySelector('button.closeFullForm');
+	    buttonClose.addEventListener('click', removeInfoStudent, false);
+		return containerTable;
 	}
 
-    function hideInfoStudent () {
-    	buttonClose.removeEventListener('click', hideInfoStudent);
-    	container.innerHTML = '';
+    function removeInfoStudent () {
+    	buttonClose.removeEventListener('click', removeInfoStudent);
+    	containerTable.parentNode.innerHTML = '';
     }
-    mediator.sub('getStudentData', showStudentForm);	
 }

@@ -1,36 +1,48 @@
 'use strict';
 function ControllerStudentList () {
-    var cardLocation,
-        editFormLocation,
-        tableLocation,
-        group,
+    var group,
         tableContent,
         studentFullInfo,
-        studentEdit;
+        studentEdit,
+        tableView,
+        infoView,
+        editView,
+        adress,
+        location,
+        coord;
 
     group = new StudentsList();
+    tableContent = new TableView(group);
+    showTableContent();
+    studentFullInfo = new FullInfoView();
+    studentEdit = new EditFormView();
 
-    tableLocation = implement('table');
-    tableContent = new TableView(group, tableLocation);
+    function showTableContent () {
+        tableView = tableContent.createTable();
+        implement('table', tableView);
+        tableContent.showInfo();
+    }
 
-    tableContent.showInfo();
-        
-    cardLocation = implement('fullInfo');
-    studentFullInfo = new FullInfoView(cardLocation);
+    function showInfoView (student) {
+        infoView = studentFullInfo.showStudentForm(student);
+        implement('fullInfo', infoView);
+    }
 
-    editFormLocation = implement('editForm');
-    studentEdit = new EditFormView(editFormLocation);
+    function showEditStudent (student) {
+        editView = studentEdit.showEdit(student);
+        implement('editForm', editView);
+    }
 
-    function implement (name) {
-        var adress,
-            location,
-            coord = {
-                fullInfo: 'card',
-                editForm: 'editForm',
-                table: 'content'
-            }
+    function implement (name, view) {
+        coord = {
+            fullInfo: 'card',
+            editForm: 'editForm',
+            table: 'content'
+        }
         adress = coord[name];
         location = document.getElementById(adress);
-        return location;
+        location.appendChild(view);
     }
+    mediator.sub('getStudentData', showInfoView);
+    mediator.sub('editStudentData', showEditStudent);    
 }

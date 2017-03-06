@@ -1,7 +1,7 @@
 'use strict';
-function EditFormView (container) {
-    var formContainer = document.getElementById('editForm'),
-        editData = {},
+function EditFormView () {
+    var editData = {},
+        containerForm = document.createElement('div'),
         formInner,
         form,
         buttonSave,
@@ -12,32 +12,33 @@ function EditFormView (container) {
         studentJSON,
         studentCurrent;
 
-	function showEdit (student) {
+	this.showEdit = function (student) {
         studentCurrent = student;
         studentJSON = student.toJSON();
 	    formInner = tmplForm();
-	    container.innerHTML = formInner;
+	    containerForm.innerHTML = formInner;
 	    
-	    buttonSave = document.querySelector('.button_save');
+	    buttonSave = containerForm.querySelector('.button_save');
         buttonSave.addEventListener('click', saveChanges, false);
 
-        buttonClose = document.querySelector('.button_close');       
+        buttonClose = containerForm.querySelector('.button_close');       
         buttonClose.addEventListener('click', hideEdit, false);
 
-	    form = document.querySelector('.form');
+	    form = containerForm.querySelector('.form');
 	    formInputs = form.querySelectorAll('input');
 	    
 	    [].forEach.call(formInputs, function (item) {
 	    	prop = item.name;
 	    	item.value = studentJSON[prop];
 	    })
+        return containerForm;
 	}
 
 	function hideEdit () {        
         buttonClose.removeEventListener('click', hideEdit);
         buttonSave.removeEventListener('click', saveChanges);
 
-		container.innerHTML = '';
+		containerForm.parentNode.innerHTML = '';
 	}
     	
     function saveChanges () {
@@ -49,7 +50,6 @@ function EditFormView (container) {
         studentCurrent.setProperty(editData); 
         hideEdit();
     }   
-    mediator.sub('editStudentData', showEdit);    
 }
 
 
