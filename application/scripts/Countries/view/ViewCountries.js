@@ -1,33 +1,24 @@
 'use strict';
 function ViewCountries (listCountries) {
-    var container = document.createElement('div'),
-        caption,
-        countries,
-        allCountries,
-        item,        
-        country;
+    var container = document.createElement('div');
     
 	this.createListCoun = function (continent) {
+        var caption,
+            countries,
+            allCountries;
         caption = tplCaption();
         caption = caption.replace('caption:', continent);
         container.innerHTML = caption;
 
-        if (continent === 'All') {
-            allCountries = listCountries.getAll(); 
-            allCountries.forEach(function (item) {
-                createList(item);
-            })
-        } else {
-            countries = listCountries.getCountries(continent);
-            countries.forEach(function (item) {
-                createList(item);
-            })
-        }
+        countries = listCountries.getCountries(continent);
+        countries.forEach(function (item) {
+            createList(item);
+        })
         return container;
-    }
+    };
 
     function createList (item) {
-        country = new ViewCountryItem(item, listCountries);          
+        var country = new ViewCountryItem(item, listCountries);          
         container.appendChild(country);
     }
 }

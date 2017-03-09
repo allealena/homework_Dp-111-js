@@ -2,16 +2,16 @@
 function ViewCountryItem (item, listCountries) {
 	var itemLi = document.createElement('li'),
 	    itemList = renderTplCountry(tplListItem, item),
-	    buttonLike,
-        buttonDislike,
-        buttonKill,
-        country,
-        countryName;
+        country;
 
     itemLi.innerHTML = itemList;
     addEvents();
 
     function addEvents () {
+        var buttonLike,
+            buttonDislike,
+            buttonKill;
+
         buttonLike = itemLi.querySelector('.icon.like');
         buttonDislike = itemLi.querySelector('.icon.dislike');
         buttonKill = itemLi.querySelector('.icon.kill');
@@ -29,7 +29,7 @@ function ViewCountryItem (item, listCountries) {
         country.parentNode.removeChild(country);
     }
     function removeIt () {
-    	countryName = item.name;
+        var countryName = item.name;
         listCountries.removeItem(countryName);
         country = this.parentNode;
         country.parentNode.removeChild(country);

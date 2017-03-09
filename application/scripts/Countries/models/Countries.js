@@ -1,50 +1,43 @@
 'use strict';
 function Countries () {
 	var countries = getCountriesCollection(),
-	    continentCountries,
-        countriesCol,
-        continent,
-        name,
-        area,
-        population,
-        countryJSON,
-        country,
-        countriesCollection;
+        continent;
 
     this.getCountries = function (cont) {
-    	continentCountries = [];
+    	var continentCountries = [],
+            countryJSON;
+        
     	countries.forEach(function (item) {
-    		if(item.continent === cont) {
-    			continentCountries.push(item);
-    		}
+            countryJSON = item.getJSON();
+            if (cont === 'All' || countryJSON.continent === cont) {
+                continentCountries.push(countryJSON);
+            } 
     	})
         return continentCountries;
-    }
-
-    this.getAll = function () {
-    	return countries;
-    	}
+    };
 
     this.removeItem = function (country) {
+        var countryJSON;
     	countries.forEach(function (item, i) {
-    		if (item.name === country) {
+            countryJSON = item.getJSON();
+    		if (countryJSON.name === country) {
         		countries.splice(i, 1);
         	};
     	})
-    }
+    };
+
     function getCountriesCollection () {
-        countriesCol = [];
-        countriesCollection = collection();
+        var countriesCol = [],
+            countriesCollection,
+            country;
         
+        countriesCollection = collection();
+
         countriesCollection.forEach(function (item) {
-            continent = item[0];
-            name = item[1];
-            area = item[2];
-            population = item[3];
-            country = new Country(continent, name, area, population);
-            countryJSON = country.getJSON();
-            countriesCol.push(countryJSON);
+            country = new Country(...item);
+            countriesCol.push(country);
         })
-    return countriesCol;
+        return countriesCol;
     }
+    this.countries = countries;
 }

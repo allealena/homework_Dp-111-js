@@ -5,14 +5,13 @@ function Country (continentProp, nameProp, areaProp, populationProp) {
             name: nameProp,
             area: areaProp,
             population: populationProp
-	    },
-        country;
+	    };
 
     this.getJSON = function () {
-    	country = {};
+    	var country = {};
         for (var key in countryProp) {
         	country[key] = countryProp[key];
         }
         return country;
-    }
+    };
 }

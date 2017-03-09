@@ -2,26 +2,25 @@
 function ControllerCountry () {
     var countries = new Countries(),
         viewNav = new ViewNavigation(),
-        viewCountries = new ViewCountries(countries),
-        navigationCountry,
-        countriesCont,
-        coord,
-        adress,
-        location;
+        viewCountries = new ViewCountries(countries);
     
     showNavigation();
 
     function showNavigation () {
-        navigationCountry = viewNav.showButton();
+        var navigationCountry = viewNav.showButton();
         implement('navigation', navigationCountry)
     }
 
     function showCountries (continent) {
-    	countriesCont = viewCountries.createListCoun(continent);
+        var countriesCont = viewCountries.createListCoun(continent);
     	implement('countriesList', countriesCont)
     }
 
     function implement (name, view) {
+        var coord,
+            adress,
+            location;
+
         coord = {
             navigation: '.buttons',
             countriesList: '.countries'

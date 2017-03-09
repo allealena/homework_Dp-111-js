@@ -1,11 +1,11 @@
 'use strict';
 function ViewNavigation () {
-	var navigation = tplNav(),
-        container = document.createElement('div'),
-        buttons,
-        continent;
     
     this.showButton = function () {
+    	var container = document.createElement('div'),
+    	    navigation = tplNav(),
+    	    buttons;
+
         container.innerHTML = navigation;
 	    buttons = container.querySelectorAll('button');
 
@@ -13,10 +13,10 @@ function ViewNavigation () {
 		    item.addEventListener('click', showCountries, false);
 	    })
 	    return container;
-    }
+    };
     
     function showCountries () {
-		continent = this.name;
+    	var continent = this.name;
 		mediator.pub('getContinent', continent);
 	}
 }
