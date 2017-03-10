@@ -1,18 +1,16 @@
 'use strict';
 function EditFormView () {
-    var editData = {},
-        containerForm = document.createElement('div'),
-        formInner,
-        form,
+    var containerForm = document.createElement('div'),
         buttonSave,
         buttonClose,
         formInputs,
-        prop,
-        property,
-        studentJSON,
         studentCurrent;
 
 	this.showEdit = function (student) {
+        var formInner,
+            form,
+            prop,
+            studentJSON;
         studentCurrent = student;
         studentJSON = student.toJSON();
 	    formInner = tmplForm();
@@ -32,7 +30,7 @@ function EditFormView () {
 	    	item.value = studentJSON[prop];
 	    })
         return containerForm;
-	}
+	};
 
 	function hideEdit () {        
         buttonClose.removeEventListener('click', hideEdit);
@@ -42,6 +40,8 @@ function EditFormView () {
 	}
     	
     function saveChanges () {
+        var editData = {},
+            property;
         [].forEach.call(formInputs, function (item) { 
         property = item.name;           
         editData[property] = item.value;

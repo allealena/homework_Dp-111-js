@@ -1,14 +1,13 @@
 'use strict';
 function ListItemView (student) {
 	var table = document.querySelector('table.studentsList'),
-	    row = document.createElement('tr'),	    
-	    listItem,
+	    row = document.createElement('tr'),	    	    
 	    buttonMore,
-	    buttonEdit,
-	    studentJSON,
-	    newRow;
+	    buttonEdit;
 
 	function createRow () {
+		var listItem,
+		    studentJSON;
 	    studentJSON = student.toJSON();
 	    listItem = renderTpl(tmplRowTable(), studentJSON);
 	    row.innerHTML = listItem;	    
@@ -20,7 +19,7 @@ function ListItemView (student) {
         table.appendChild(row);
         addEvent(); 
 	    student.addListener('update', updateInfo);
-	}
+	};
 
 	function addEvent () {
 		buttonMore = row.querySelector('button.more');
@@ -30,6 +29,7 @@ function ListItemView (student) {
 	}
 
 	function updateInfo () {
+		var newRow;
         buttonMore.removeEventListener('click', showInfoStudent, false);
 	    buttonEdit.removeEventListener('click', showEditForm, false);
         

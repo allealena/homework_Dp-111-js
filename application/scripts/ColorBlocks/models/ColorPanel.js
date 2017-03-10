@@ -1,7 +1,7 @@
+'use strict';
 function ColorPanel (colorCollection) {
 	var palette = [],
-	    colorCell,
-	    color;
+	    colorCell;
 
 	colorCollection.forEach(function (item) {
 	    colorCell = new ColorCounter();	

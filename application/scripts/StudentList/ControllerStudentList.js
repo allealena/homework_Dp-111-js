@@ -3,13 +3,7 @@ function ControllerStudentList () {
     var group,
         tableContent,
         studentFullInfo,
-        studentEdit,
-        tableView,
-        infoView,
-        editView,
-        adress,
-        location,
-        coord;
+        studentEdit;
 
     group = new StudentsList();
     tableContent = new TableView(group);
@@ -18,22 +12,25 @@ function ControllerStudentList () {
     studentEdit = new EditFormView();
 
     function showTableContent () {
-        tableView = tableContent.createTable();
+        var tableView = tableContent.createTable();
         implement('table', tableView);
         tableContent.showInfo();
     }
 
     function showInfoView (student) {
-        infoView = studentFullInfo.showStudentForm(student);
+        var infoView = studentFullInfo.showStudentForm(student);
         implement('fullInfo', infoView);
     }
 
     function showEditStudent (student) {
-        editView = studentEdit.showEdit(student);
+        var editView = studentEdit.showEdit(student);
         implement('editForm', editView);
     }
 
     function implement (name, view) {
+        var adress,
+            location,
+            coord;
         coord = {
             fullInfo: 'card',
             editForm: 'editForm',

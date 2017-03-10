@@ -1,20 +1,14 @@
-function ButtonView (color, colorItem) {
-    var containerColors = document.querySelector('.containerColors'),
-        colorCell,
-        containerButton,
-        mainColor;
-	    
-    this.showButton = function () {
-        colorCell = renderTplColor(tplButton(), color);
-
-        containerButton = document.createElement('div');
+function ButtonView (color, colorItem) {	    
+    this.createButtonView = function () {
+        var colorCell = renderTplColor(tplButton(), color),
+            containerButton = document.createElement('div');        
         containerButton.innerHTML = colorCell;
-        containerColors.appendChild(containerButton);
-
         containerButton.addEventListener('click', pickColor, false);
-    } 
-
+        return containerButton;
+    }; 
+    
     function pickColor() {
+        var mainColor;
         colorItem.countClick();
         mainColor = new MainColorView(color);
     }

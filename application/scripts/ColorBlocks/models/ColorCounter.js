@@ -1,3 +1,4 @@
+'use strict';
 function ColorCounter () {
 	this.color = '';
 	this.currentCount = 0;
@@ -6,10 +7,6 @@ function ColorCounter () {
         this.triggerEvent('clickcolor');
         return this.currentCount;
     }
-
-    listeners = {
-    	clickcolor: []
-    };
 }
 
 ColorCounter.prototype = new Observer();

@@ -39,7 +39,7 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
             studentJSON[key] = student[key];
         }
         return studentJSON;
-    }
+    };
 
     this.setProperty = function (changeData) {
         for (var key in propertyStudent) {
@@ -48,6 +48,6 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
             }
         }
         this.triggerEvent('update');
-    }
+    };
 }
 Student.prototype = new Observer();

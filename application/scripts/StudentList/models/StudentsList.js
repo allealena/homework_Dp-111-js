@@ -5,14 +5,7 @@ function StudentsList () {
 	    studentsInfo = [],
 	    studentsData = [],
 	    listStudent = [],
-	    student,
-	    name,
-	    surname,
-	    gender,
-	    skype,
-	    birthYear,
-        birthMonth,
-        birthDate;
+	    student;
 
     createStudents();
     createListStudent();
@@ -28,15 +21,7 @@ function StudentsList () {
 	
     function createListStudent () {
     	studentsInfo.forEach(function (item) {
-		    name = item[0];
-		    surname = item[1];
-		    gender = item[2];
-		    skype = item[3];
-		    birthYear = item[4];
-		    birthMonth = item[5];
-		    birthDate = item[6];
-            student = new Student(name, surname, gender, skype, birthYear, birthMonth, birthDate);
-        
+            student = new Student(...item);        
             listStudent.push(student);
 	    });
     }	

@@ -2,8 +2,7 @@
 function ControllerCountry () {
     var countries = new Countries(),
         viewNav = new ViewNavigation(),
-        viewCountries = new ViewCountries(countries);
-    
+        viewCountries = new ViewCountries(countries);    
     showNavigation();
 
     function showNavigation () {
@@ -20,7 +19,6 @@ function ControllerCountry () {
         var coord,
             adress,
             location;
-
         coord = {
             navigation: '.buttons',
             countriesList: '.countries'
