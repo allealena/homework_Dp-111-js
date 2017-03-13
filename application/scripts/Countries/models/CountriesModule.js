@@ -2,7 +2,7 @@ var Countries = (function () {
 	function ConstructorCountries () {
 	    this.countries = getCountriesCollection();
 	}
-	
+
 	function getCountriesCollection () {
             var countriesCol = [],
                 countriesCollection,
