@@ -5,11 +5,14 @@ function Countries () {
 
     this.getCountries = function (cont) {
     	var continentCountries = [],
-            countryJSON;
+            countryJSON,
+            myContinent;
         
     	countries.forEach(function (item) {
             countryJSON = item.getJSON();
-            if (cont === 'All' || countryJSON.continent === cont) {
+            myContinent = item.isOwnContinent(cont);
+            
+            if (cont === 'All' || myContinent) {
                 continentCountries.push(countryJSON);
             } 
     	})

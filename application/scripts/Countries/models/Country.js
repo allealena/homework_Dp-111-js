@@ -14,4 +14,9 @@ function Country (continentProp, nameProp, areaProp, populationProp) {
         }
         return country;
     };
+    this.isOwnContinent = function (cont) {
+        if (cont === countryProp.continent) {
+            return true;
+        }
+    }
 }
