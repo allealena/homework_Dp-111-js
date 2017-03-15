@@ -14,6 +14,9 @@ function ControllerCountry () {
         var countriesCont = viewCountries.createListCoun(continent);
     	implement('countriesList', countriesCont)
     }
+    function removeCountry (country) {
+        countries.removeItem(country);
+    }
 
     function implement (name, view) {
         var coord,
@@ -29,4 +32,5 @@ function ControllerCountry () {
     }
 
     mediator.sub('getContinent', showCountries);
+    mediator.sub('deleteCountry', removeCountry);
 }

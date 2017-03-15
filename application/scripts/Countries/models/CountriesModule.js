@@ -36,10 +36,9 @@ var Countries = (function () {
         removeItem: function (country) {
         	var countriesCollection = this.countries,
         	    countryJSON;
-        	
     	    countriesCollection.forEach(function (item, i) {
                 countryJSON = item.getJSON();
-    		    if (countryJSON.name === country) {
+    		    if (countryJSON.name === country.name) {
         		    countriesCollection.splice(i, 1);
         	    };
     	    })

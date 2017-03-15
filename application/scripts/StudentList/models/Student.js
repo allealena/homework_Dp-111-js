@@ -10,10 +10,7 @@ function Student (nameSt, surnameSt, genderSt, skypeSt, birthYearSt, birthMonthS
         },
         personeAge,
         today,
-        monthBirth,
-        listeners = {
-            update: []
-        };
+        monthBirth;
     
     getAge();
 

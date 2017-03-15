@@ -18,8 +18,8 @@ function ViewCountries (listCountries) {
     };
 
     function createList (item) {
-        var country = new ViewCountryItem(item, listCountries);          
-        container.appendChild(country);
+        var country = new ViewCountryItem(item, listCountries); 
+        container.appendChild(country);       
     }
 }
 

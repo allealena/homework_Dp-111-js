@@ -1,7 +1,7 @@
 'use strict';
-function ViewCountryItem (item, listCountries) {
+function ViewCountryItem (countryItem) {
 	var itemLi = document.createElement('li'),
-	    itemList = renderTplCountry(tplListItem, item),
+	    itemList = renderTplCountry(tplListItem, countryItem),
         country;
 
     itemLi.innerHTML = itemList;
@@ -29,10 +29,11 @@ function ViewCountryItem (item, listCountries) {
         country.parentNode.removeChild(country);
     }
     function removeIt () {
-        var countryName = item.name;
-        listCountries.removeItem(countryName);
+        var countryName = countryItem.name;
         country = this.parentNode;
         country.parentNode.removeChild(country);
+
+        mediator.pub('deleteCountry', countryItem);
     }
     return itemLi;
 }
