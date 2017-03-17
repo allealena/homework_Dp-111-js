@@ -1,10 +1,11 @@
 'use strict';
 function TableView (studentList) {
 	this.createTable = function () {
-		var table = document.createElement('table'),
-	    header = tmplTableHeader();
-	    table.innerHTML = header;
-	    table.classList.add('studentsList');  
+		var header = tmplTableHeader(),
+		    table = $('<table></table>')
+		        .html(header)
+		        .addClass('studentsList');
+		        
         return table;
 	};        
 

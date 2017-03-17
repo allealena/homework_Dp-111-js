@@ -2,8 +2,6 @@
 function ListItemView (student) {
 	var table = $('table.studentsList'),
 	    row = this.createContainer('tr'),	    	    
-	    buttonMore,
-	    buttonEdit,
 	    rowContainer,
 	    these = this;
 
@@ -20,7 +18,7 @@ function ListItemView (student) {
         these.removeEvent('button.more', showInfoStudent);
         these.removeEvent('button.edit', showEditForm); 
         newRow = these.createInnerContaier(student, tmplRowTable());
-        table.replaceChild(newRow, row);
+        row.replaceWith(newRow);
         these.addEvent('button.more', showInfoStudent); 
         these.addEvent('button.edit', showEditForm); 
 	}

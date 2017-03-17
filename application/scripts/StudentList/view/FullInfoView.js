@@ -1,7 +1,8 @@
 'use strict';
 function FullInfoView () {
-	var container = this.createContainer('div');
-	var tpl = tmplFullForm();
+	var container = this.createContainer('div'),
+	    tpl = tmplFullForm(),
+	    these = this;
 
 	this.createInner = function (student) {
 		var innerContainer;
@@ -14,6 +15,7 @@ function FullInfoView () {
         this.addEvent('button.closeFullForm', removeInfoStudent);
 
         function removeInfoStudent () {
+        	these.removeEvent('button.closeFullForm', removeInfoStudent);
             container.innerHTML = '';
         }
         return innerContainer;
@@ -22,31 +24,3 @@ function FullInfoView () {
 
 extend(FullInfoView, View);
 
-
-/*function FullInfoView () {
-	var buttonClose,
-	    containerTable,
-	    studentJSON;
-
-	this.showStudentForm = function (student) {
-		var table;
-		if (containerTable) {
-    	containerTable.innerHTML = '';			
-		}
-
-		studentJSON = student.toJSON();
-		table = renderTpl(tmplFullForm(), studentJSON);
-
-	    containerTable = document.createElement('div');
-        containerTable.innerHTML = table;
-
-        buttonClose = containerTable.querySelector('button.closeFullForm');
-	    buttonClose.addEventListener('click', removeInfoStudent, false);
-		return containerTable;
-	};
-
-    function removeInfoStudent () {
-    	buttonClose.removeEventListener('click', removeInfoStudent);
-    	containerTable.innerHTML = '';
-    }
-}*/

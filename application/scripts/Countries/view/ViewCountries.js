@@ -1,14 +1,14 @@
 'use strict';
 function ViewCountries (listCountries) {
-    var container = document.createElement('div');
+    var container = $('<div></div>');
     
-	this.createListCoun = function (continent) {
+	this.createListCont = function (continent) {
         var caption,
             countries,
             allCountries;
         caption = tplCaption();
         caption = caption.replace('caption:', continent);
-        container.innerHTML = caption;
+        container.html(caption);
 
         countries = listCountries.getCountries(continent);
         countries.forEach(function (item) {
@@ -19,7 +19,7 @@ function ViewCountries (listCountries) {
 
     function createList (item) {
         var country = new ViewCountryItem(item, listCountries); 
-        container.appendChild(country);       
+        container.append(country);       
     }
 }
 

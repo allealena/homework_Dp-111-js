@@ -11,7 +11,7 @@ function ControllerCountry () {
     }
 
     function showCountries (continent) {
-        var countriesCont = viewCountries.createListCoun(continent);
+        var countriesCont = viewCountries.createListCont(continent);
     	implement('countriesList', countriesCont)
     }
     function removeCountry (country) {
