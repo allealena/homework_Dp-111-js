@@ -1,5 +1,29 @@
 'use strict';
 function FullInfoView () {
+	var container = this.createContainer('div');
+	var tpl = tmplFullForm();
+
+	this.createInner = function (student) {
+		var innerContainer;
+		
+		if (container) {
+    	    container.innerHTML = '';
+		}
+
+		innerContainer = this.createInnerContaier(student, tpl);
+        this.addEvent('button.closeFullForm', removeInfoStudent);
+
+        function removeInfoStudent () {
+            container.innerHTML = '';
+        }
+        return innerContainer;
+	}	
+};
+
+extend(FullInfoView, View);
+
+
+/*function FullInfoView () {
 	var buttonClose,
 	    containerTable,
 	    studentJSON;
@@ -25,4 +49,4 @@ function FullInfoView () {
     	buttonClose.removeEventListener('click', removeInfoStudent);
     	containerTable.innerHTML = '';
     }
-}
+}*/

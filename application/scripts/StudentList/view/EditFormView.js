@@ -1,44 +1,38 @@
 'use strict';
 function EditFormView () {
-    var containerForm = document.createElement('div'),
-        buttonSave,
-        buttonClose,
+    var containerForm = this.createContainer('div'),
         formInputs,
-        studentCurrent;
+        formInner,
+        studentCurrent,
+        these = this;        
 
-	this.showEdit = function (student) {
-        var formInner,
-            form,
+    this.showEdit = function (student) {
+        var form,
             prop,
-            studentJSON;
+            studentJSON = student.toJSON(),
+            tpl = tmplForm();
         studentCurrent = student;
-        studentJSON = student.toJSON();
-	    formInner = tmplForm();
-	    containerForm.innerHTML = formInner;
-	    
-	    buttonSave = containerForm.querySelector('.button_save');
-        buttonSave.addEventListener('click', saveChanges, false);
+        
+        formInner = this.createInnerContaier(student, tpl);
+        this.addEvent('.button_save', saveChanges);
+        this.addEvent('.button_close', hideEdit);
 
-        buttonClose = containerForm.querySelector('.button_close');       
-        buttonClose.addEventListener('click', hideEdit, false);
+        form = formInner.querySelector('.form');
+        formInputs = form.querySelectorAll('input');
+        
+        [].forEach.call(formInputs, function (item) {
+            prop = item.name;
+            item.value = studentJSON[prop];
+        })
+        return formInner;
+    };
 
-	    form = containerForm.querySelector('.form');
-	    formInputs = form.querySelectorAll('input');
-	    
-	    [].forEach.call(formInputs, function (item) {
-	    	prop = item.name;
-	    	item.value = studentJSON[prop];
-	    })
-        return containerForm;
-	};
-
-	function hideEdit () {        
-        buttonClose.removeEventListener('click', hideEdit);
-        buttonSave.removeEventListener('click', saveChanges);
-
-		containerForm.parentNode.innerHTML = '';
-	}
-    	
+    function hideEdit () {  
+        these.removeEvent('.button_save', saveChanges);
+        these.removeEvent('.button_close', hideEdit);
+        formInner.parentNode.innerHTML = '';
+    }
+        
     function saveChanges () {
         var editData = {},
             property;
@@ -51,5 +45,5 @@ function EditFormView () {
         hideEdit();
     }   
 }
-
+extend(EditFormView, View);
 

@@ -1,7 +1,7 @@
 function ControllerColorBlock () {
 	var colors = ['red', 'blue', 'green'],
-	    containerCount = document.querySelector('.counters'),
-	    containerColors = document.querySelector('.containerColors'),
+	    containerCount = $('.counters'),
+	    containerColors = $('.containerColors'),
         colorPalette;
 
     colorPalette = new ColorPanel(colors);
@@ -16,11 +16,11 @@ function ControllerColorBlock () {
         palette.forEach(function (item) {
             colorCell = new ButtonView(item.color, item);
             containerButton = colorCell.createButtonView();
-            containerColors.appendChild(containerButton);
+            containerColors.append(containerButton);
 
             colorCounter = new CounterView(item.color, item);
             containerCounter = colorCounter.createCountView();
-            containerCount.appendChild(containerCounter);
+            containerCount.append(containerCounter);
         })
     }
 }

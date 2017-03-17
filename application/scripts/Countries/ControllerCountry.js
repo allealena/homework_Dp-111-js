@@ -27,8 +27,7 @@ function ControllerCountry () {
             countriesList: '.countries'
         }
         adress = coord[name];
-        location = document.querySelector(adress);
-        location.appendChild(view);
+        location = $(adress).append(view);
     }
 
     mediator.sub('getContinent', showCountries);

@@ -1,41 +1,28 @@
 'use strict';
 function ListItemView (student) {
-	var table = document.querySelector('table.studentsList'),
-	    row = document.createElement('tr'),	    	    
+	var table = $('table.studentsList'),
+	    row = this.createContainer('tr'),	    	    
 	    buttonMore,
-	    buttonEdit;
-
-	function createRow () {
-		var listItem,
-		    studentJSON;
-	    studentJSON = student.toJSON();
-	    listItem = renderTpl(tmplRowTable(), studentJSON);
-	    row.innerHTML = listItem;	    
-	    return row;
-	}
+	    buttonEdit,
+	    rowContainer,
+	    these = this;
 
 	this.showItem = function () {
-        createRow();
-        table.appendChild(row);
-        addEvent(); 
+        rowContainer = this.createInnerContaier(student, tmplRowTable());
+        table.append(rowContainer);
+        this.addEvent('button.more', showInfoStudent); 
+        this.addEvent('button.edit', showEditForm); 
 	    student.addListener('update', updateInfo);
 	};
 
-	function addEvent () {
-		buttonMore = row.querySelector('button.more');
-		buttonEdit = row.querySelector('button.edit');
-		buttonMore.addEventListener('click', showInfoStudent, false);
-	    buttonEdit.addEventListener('click', showEditForm, false);
-	}
-
 	function updateInfo () {
 		var newRow;
-        buttonMore.removeEventListener('click', showInfoStudent, false);
-	    buttonEdit.removeEventListener('click', showEditForm, false);
-        
-        newRow = createRow();
+        these.removeEvent('button.more', showInfoStudent);
+        these.removeEvent('button.edit', showEditForm); 
+        newRow = these.createInnerContaier(student, tmplRowTable());
         table.replaceChild(newRow, row);
-        addEvent();
+        these.addEvent('button.more', showInfoStudent); 
+        these.addEvent('button.edit', showEditForm); 
 	}
 
 	function showInfoStudent () {
@@ -46,3 +33,5 @@ function ListItemView (student) {
 		mediator.pub('editStudentData', student);
 	}
 }
+
+extend(ListItemView, View);
