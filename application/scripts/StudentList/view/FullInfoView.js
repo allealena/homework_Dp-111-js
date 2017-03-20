@@ -1,26 +1,18 @@
 'use strict';
-function FullInfoView () {
-	var container = this.createContainer('div'),
-	    tpl = tmplFullForm(),
-	    these = this;
+var FullInfoView = Backbone.View.extend({ 
+    tagName: 'div',
+    template: _.template(tmplFullForm()),
 
-	this.createInner = function (student) {
-		var innerContainer;
-		
-		if (container) {
-    	    container.innerHTML = '';
-		}
+	render: function () {
+		var fullInfo = this.$el.html(this.template(this.model.toJSON() ));
+		return fullInfo;
+	},
 
-		innerContainer = this.createInnerContaier(student, tpl);
-        this.addEvent('button.closeFullForm', removeInfoStudent);
+	events: {
+		'click button.closeFullForm' : 'removeInfoStudent'
+	},
 
-        function removeInfoStudent () {
-        	these.removeEvent('button.closeFullForm', removeInfoStudent);
-            container.innerHTML = '';
-        }
-        return innerContainer;
-	}	
-};
-
-extend(FullInfoView, View);
-
+	removeInfoStudent: function () {
+		this.remove();
+	}
+})

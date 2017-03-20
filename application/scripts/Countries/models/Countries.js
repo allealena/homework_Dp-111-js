@@ -1,5 +1,28 @@
 'use strict';
-function Countries () {
+var Countries = Backbone.Collection.extend({
+    model: Country,
+
+    events: {
+        'getContinent': 'getCountries'
+    },
+
+    getCountries: function (cont) {
+        var continentCountries = [],
+            countryJSON,
+            myContinent;
+        
+        this.forEach(function (item) {
+            countryJSON = item.toJSON();
+            myContinent = item.isOwnContinent(cont);
+            
+            if (cont === 'All' || myContinent) {
+                continentCountries.push(countryJSON);
+            } 
+        })
+        return continentCountries;
+    }
+});
+/*function Countries () {
 	var countries = getCountriesCollection(),
         continent;
 
@@ -43,4 +66,4 @@ function Countries () {
         return countriesCol;
     }
     this.countries = countries;
-}
+}*/

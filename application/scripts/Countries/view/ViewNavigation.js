@@ -1,5 +1,28 @@
 'use strict';
-function ViewNavigation () {
+var ViewNavigation = Backbone.View.extend({
+    tagName: 'div',
+    navigation: tplNav(),
+
+    initialize: function () {
+        this.render();
+    },
+
+    render: function () {
+        this.$el.html(this.navigation);
+        return this;
+    },
+
+    events: {
+        'click button' : 'showCountries'
+    },
+
+    showCountries: function () {
+        var continent = event.target.name;
+        this.trigger('getContinent', continent);
+    }
+    
+});
+/*function ViewNavigation () {
     
     this.showButton = function () {
     	var container = document.createElement('div'),
@@ -19,5 +42,5 @@ function ViewNavigation () {
     	var continent = this.name;
 		mediator.pub('getContinent', continent);
 	}
-}
+}*/
 

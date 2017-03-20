@@ -1,5 +1,14 @@
 'use strict';
-function ViewCountryItem (countryItem) {
+var ViewCountryItem = Backbone.View.extend({
+    tagName: 'li',
+    template: _.template(tplListItem()),
+
+    render: function () {
+        this.$el.html( this.template(this.model.toJSON() ) );
+        return this;
+    }
+});
+/*function ViewCountryItem (countryItem) {
 	var itemLi = document.createElement('li'),
 	    itemList = renderTplCountry(tplListItem, countryItem),
         country;
@@ -36,4 +45,4 @@ function ViewCountryItem (countryItem) {
         mediator.pub('deleteCountry', countryItem);
     }
     return itemLi;
-}
+}*/

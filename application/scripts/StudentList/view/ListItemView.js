@@ -1,35 +1,37 @@
 'use strict';
-function ListItemView (student) {
-	var table = $('table.studentsList'),
-	    row = this.createContainer('tr'),	    	    
-	    rowContainer,
-	    these = this;
+var ListItemView = Backbone.View.extend({
+	tagName: 'tr',
+	template: _.template(tmplRowTable()),
 
-	this.showItem = function () {
-        rowContainer = this.createInnerContaier(student, tmplRowTable());
-        table.append(rowContainer);
-        this.addEvent('button.more', showInfoStudent); 
-        this.addEvent('button.edit', showEditForm); 
-	    student.addListener('update', updateInfo);
-	};
+	initialize: function () {
+		this.render();
+		this.listenTo(this.model, 'change', this.render);
+	},
 
-	function updateInfo () {
-		var newRow;
-        these.removeEvent('button.more', showInfoStudent);
-        these.removeEvent('button.edit', showEditForm); 
-        newRow = these.createInnerContaier(student, tmplRowTable());
-        row.replaceWith(newRow);
-        these.addEvent('button.more', showInfoStudent); 
-        these.addEvent('button.edit', showEditForm); 
+	render: function () {
+		this.$el.html( this.template(this.model.toJSON() ) );
+		return this;
+	},
+
+	events: {
+		'click button.more' : 'showInfoStudent',
+		'click button.edit' : 'showEditForm',
+		'change' : 'updateInfo'
+	},
+
+	showInfoStudent: function () {
+		var fullInfo = new FullInfoView({
+			model: this.model
+		});
+
+	    $('#card').append(fullInfo.render());
+	},
+
+	showEditForm: function () {
+		var editForm = new EditFormView({
+			model: this.model
+		});
+		
+		$('#editForm').append(editForm.render());
 	}
-
-	function showInfoStudent () {
-		mediator.pub('getStudentData', student);
-	}
-
-	function showEditForm () {
-		mediator.pub('editStudentData', student);
-	}
-}
-
-extend(ListItemView, View);
+});

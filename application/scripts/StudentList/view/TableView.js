@@ -1,19 +1,17 @@
 'use strict';
-function TableView (studentList) {
-	this.createTable = function () {
-		var header = tmplTableHeader(),
-		    table = $('<table></table>')
-		        .html(header)
-		        .addClass('studentsList');
-		        
-        return table;
-	};        
+var TableView = Backbone.View.extend({
+    tagName: 'table',
+    className: 'studentsList',
 
-	this.showInfo = function () {
-		var student;
-		studentList.forEach(function (item) {
-			student = new ListItemView(item);
-            student.showItem();
-		})
-    };            
-}
+    render: function () {
+    	var header = tmplTableHeader();
+    	this.$el.append(header);
+    	this.collection.each(function(student) {
+    		var studentView = new ListItemView({
+	            model: student
+            });
+            this.$el.append(studentView.render().el);
+    	}, this);
+    	return this;
+    }
+});

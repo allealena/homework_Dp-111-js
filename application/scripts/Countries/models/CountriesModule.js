@@ -1,4 +1,4 @@
-var Countries = (function () {
+/*var Countries = (function () {
 	function ConstructorCountries () {
 	    this.countries = getCountriesCollection();
 	}
@@ -45,4 +45,4 @@ var Countries = (function () {
         }
     }
 	return ConstructorCountries;
-})();
+})();*/
