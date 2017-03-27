@@ -6,7 +6,7 @@ var TableView = Backbone.View.extend({
     render: function () {
     	var header = tmplTableHeader();
     	this.$el.append(header);
-    	this.collection.each(function(student) {
+    	this.collection.forEach(function(student) {
     		var studentView = new ListItemView({
 	            model: student
             });

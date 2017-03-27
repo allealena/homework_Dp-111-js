@@ -1,17 +1,18 @@
 'use strict';
 function ControllerCountry () {
-    var countries = new Countries(),
+    var countriesCollection = collection(),
+        countries = new Countries(countriesCollection),
         viewNav = new ViewNavigation(),
-        viewCountries = new ViewCountries(countries);    
+        viewCountries = new ViewCountries({collection: countries});    
     showNavigation();
 
     function showNavigation () {
-        var navigationCountry = viewNav.showButton();
+        var navigationCountry = viewNav.el;
         implement('navigation', navigationCountry)
     }
 
     function showCountries (continent) {
-        var countriesCont = viewCountries.createListCont(continent);
+        var countriesCont = viewCountries.render(continent).el;
     	implement('countriesList', countriesCont)
     }
     function removeCountry (country) {

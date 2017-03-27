@@ -3,6 +3,11 @@ var ListItemView = Backbone.View.extend({
 	tagName: 'tr',
 	template: _.template(tmplRowTable()),
 
+	events: {
+		'click button.more': 'showInfoStudent',
+		'click button.edit': 'showEditForm'
+	},
+
 	initialize: function () {
 		this.render();
 		this.listenTo(this.model, 'change', this.render);
@@ -13,25 +18,11 @@ var ListItemView = Backbone.View.extend({
 		return this;
 	},
 
-	events: {
-		'click button.more' : 'showInfoStudent',
-		'click button.edit' : 'showEditForm',
-		'change' : 'updateInfo'
-	},
-
 	showInfoStudent: function () {
-		var fullInfo = new FullInfoView({
-			model: this.model
-		});
-
-	    $('#card').append(fullInfo.render());
+		mediator.pub('getStudentData', this.model);
 	},
 
 	showEditForm: function () {
-		var editForm = new EditFormView({
-			model: this.model
-		});
-		
-		$('#editForm').append(editForm.render());
+		mediator.pub('editStudentData', this.model);
 	}
 });

@@ -1,12 +1,15 @@
 'use strict';
 var Country = Backbone.Model.extend({
-    continent: '',
-    name: '',
-    area: '',
-    population: '',
+    defaults: {
+        continent: '',
+        name: '',
+        area: '',
+        population: ''
+    },
 
     isOwnContinent: function (cont) {
-        if (cont === this.continent) {
+        var myContinent = this.toJSON().continent;
+        if (cont == myContinent) {
             return true;
         }
     }

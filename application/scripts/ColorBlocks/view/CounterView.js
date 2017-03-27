@@ -1,18 +1,15 @@
-function CounterView (color, colorItem) {       
-    this.createCountView = function () {
-        var containerCounter = document.createElement('div'),
-            counter = renderTplColor(tplCounter(), color);
-    	containerCounter.innerHTML = counter;
-        return containerCounter;
-    };
-    
-   colorItem.addListener('clickcolor', countButtonClick); 
- 
-    function countButtonClick () {
-        var curCount,
-            count;
-        curCount = document.querySelector('span.counter_' + color);
-        count = colorItem.currentCount;
-        curCount.innerHTML = count;
+'use strict';
+var CounterView = Backbone.View.extend({
+    tagName: 'div',
+    template: _.template(tplCounter()),
+
+    initialize: function () {
+        this.listenTo(this.model, 'change', this.render);
+    },
+
+    render: function () {
+        var counter = this.model.toJSON();
+        this.$el.html(this.template(counter) );
+        return this;
     }
-}        
+});     

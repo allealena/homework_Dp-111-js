@@ -1,4 +1,4 @@
 function tplButton () {
-	var colorPanel = '<div class="button button_color: color:"></div>';
+	var colorPanel = '<div class="button button_<%= color %>"></div>';
 	return colorPanel;
 }

@@ -4,8 +4,8 @@ var FullInfoView = Backbone.View.extend({
     template: _.template(tmplFullForm()),
 
 	render: function () {
-		var fullInfo = this.$el.html(this.template(this.model.toJSON() ));
-		return fullInfo;
+		this.$el.html(this.template(this.model.toJSON() ));
+		return this;
 	},
 
 	events: {

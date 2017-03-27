@@ -4,8 +4,8 @@ var EditFormView = Backbone.View.extend({
     template: _.template(tmplForm()),
 
     render: function () {
-        var editForm = this.$el.html( this.template(this.model.toJSON() ) );
-        return editForm;
+        this.$el.html( this.template(this.model.toJSON() ) );
+        return this;
     },
 
     events: {

@@ -1,13 +1,15 @@
 var Student = Backbone.Model.extend({
-    name: '',
-    surname: '',
-    gender: '',
-    skype: '',
-    birthYear: '',
-    birthMonth: '',
-    birthDate: '',
-    birthday: '',
-    personeAge: '',
+    defaults: {
+        name: '',
+        surname: '',
+        gender: '',
+        skype: '',
+        birthYear: '',
+        birthMonth: '',
+        birthDate: '',
+        birthday: '',
+        personeAge: ''
+    },
 
     initialize: function () {
         this.getBirthday();

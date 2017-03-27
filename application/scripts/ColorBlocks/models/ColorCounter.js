@@ -1,13 +1,18 @@
 'use strict';
-function ColorCounter () {
-	this.color = '';
-	this.currentCount = 0;
-	this.countClick = function () {
-        this.currentCount++; 
-        this.triggerEvent('clickcolor');
-        return this.currentCount;
-    }
-}
+var ColorCounter = Backbone.Model.extend({
+    defaults: {
+    	color: '',
+	    currentCount: 0
+    },
 
-ColorCounter.prototype = new Observer();
+    events: {
+    	'click div.button': 'countClick'
+    },
+
+    countClick: function () {
+    	var count = this.toJSON().currentCount;
+    	count ++;
+    	this.set('currentCount', count);
+    }
+});
    

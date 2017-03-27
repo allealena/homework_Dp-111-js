@@ -18,29 +18,7 @@ var ViewNavigation = Backbone.View.extend({
 
     showCountries: function () {
         var continent = event.target.name;
-        this.trigger('getContinent', continent);
-    }
-    
+        mediator.pub('getContinent', continent);
+    } 
 });
-/*function ViewNavigation () {
-    
-    this.showButton = function () {
-    	var container = document.createElement('div'),
-    	    navigation = tplNav(),
-    	    buttons;
-
-        container.innerHTML = navigation;
-	    buttons = container.querySelectorAll('button');
-
-	    [].forEach.call(buttons, function (item) {
-		    item.addEventListener('click', showCountries, false);
-	    })
-	    return container;
-    };
-    
-    function showCountries () {
-    	var continent = this.name;
-		mediator.pub('getContinent', continent);
-	}
-}*/
 
