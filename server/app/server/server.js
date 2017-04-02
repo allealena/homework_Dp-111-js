@@ -6,8 +6,10 @@ var http = require('http'),
 
 function start() {
     function onRequest(request, response) {
-        var pathname = url.parse(request.url).pathname;
-        console.log(pathname);
+        var pathname = url.parse(request.url).pathname,
+            path = pathname.split('/'),
+            collection = path[1],
+            id = path[path.length-1];
 
         if (pathname === '/countries') {
             response.writeHead(200, {'Content-Type': 'application/json'});
@@ -22,19 +24,35 @@ function start() {
         }
 
         if (request.method === 'DELETE') {
-            /*pathname === ('/countries/' + id)) */
-            console.log(pathname);
-            var reg = '/\d+/';
-            var id = pathname.match(reg);
-                console.log(id);
+
+            if (collection === 'countries') {
+                requestHandlers.removeCountry(id);
+            }
+            response.end();
+        }
+
+        if (request.method === 'PUT') {
             
-            
-            /*response.write(requestHandlers.removeCountry(id));
-            response.end();*/
+            if (collection === 'students') {
+                requestPayload(request, id);
+            }
+            response.end();
         }
 
         file.serve(request, response);
     }
+    
+    function requestPayload (req, id) {
+        var buffer = '';
+
+        req.on('data', function (data) {
+            buffer += data;
+        });
+        req.on('end', function() {
+            requestHandlers.changeData(id, buffer);
+        });
+
+    };
 
     http.createServer(onRequest).listen(3000);
     console.log('Server has started.');

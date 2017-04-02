@@ -1,11 +1,9 @@
 var countries = require('./countries'),
     students = require('./students');
 
-var countryList = JSON.stringify(countries);
-var countriesCol = countryList.slice();
-
 function getCountries () {
-    return countriesCol;   
+	var countryList = JSON.stringify(countries);
+    return countryList;   
 }
 
 function getStudents () {
@@ -14,11 +12,26 @@ function getStudents () {
 }
 
 function removeCountry (id) {
-    console.log(id);
-    /*countriesCol.splice(id-1, 1);*/
+    countries.forEach(function (country, i) {
+       
+       if(id === country.id) {
+           countries.splice(i, 1);
+       }
+    })
+}
+
+function changeData (id, data) {
+    students.forEach(function (student, i) {
+    	
+    	if(id === student.id) {
+    		var studentData = JSON.parse(data);
+    		students.splice(i, 1, studentData);
+    	}
+    })
 }
 
 exports.getCountries = getCountries;
 exports.getStudents = getStudents;
 exports.removeCountry = removeCountry;
+exports.changeData = changeData;
 
